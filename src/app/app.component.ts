@@ -1,19 +1,7 @@
-
-
 import {Component, OnInit} from '@angular/core';
 import { RestapiService } from './service/restapi.service';
 
 
-
-// export class Group {
-//   level = 0;
-//   parent: Group;
-//   expanded = true;
-//   totalCounts = 0;
-//   get visible(): boolean {
-//     return !this.parent || (this.parent.visible && this.parent.expanded);
-//   }
-// }
 
 export interface IssueDetail {
   description:string;
@@ -39,19 +27,40 @@ export interface IssueDetail {
 
 
 export class AppComponent implements OnInit {
+
+  doneIssueTable: boolean = false;
+  openIssueTable: boolean=false;
+  readyIssueTable: boolean=false;
+  showDoneIssue() {
+    this.doneIssueTable = !this.doneIssueTable;
+  }
+  showOpenIssue(){
+    this.openIssueTable = !this.openIssueTable;
+  }
+  showReadyIssue(){
+    this.readyIssueTable = !this.readyIssueTable;
+  }
+
+  
   ngOnInit(): void {
     this.GetIssueDetails();
   }
   constructor(private service:RestapiService){}
+  Data: any;
   issuesData:any;
+  openIssue:any;
+  DoneIssue:any;
   displayedColumns: string[] = ["description","sap","project","versionFixed","dueDateCode","dueDateDelivery","watch","delivered"];
 
   GetIssueDetails(){
     this.service.GetIssueDetails().subscribe(response=>{
-      this.issuesData=response;
-      console.log(this.issuesData);
+      
+      this.openIssue=response;
+      this.DoneIssue;
+      // console.log(this.issuesData);
  
     });
+
   }
  
   title="ALL ISSUES LIST";

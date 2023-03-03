@@ -1,0 +1,48 @@
+{
+    "issueDetails":[
+    {
+      "id": 5134,
+      "description": "Several Opc",
+      "sap": 2300348372,
+      "project": "Procontrol",
+      "versionFixed": "3.8.2",
+      "dueDateCode": "28.2.2023",
+      "dueDateDelivery": "22.2.2023",
+      "watch": true,
+      "delivered": true
+    },
+    {
+      "id": 5135,
+      "description": "Hatzopolus",
+      "sap": 2300348372,
+      "project": "Ruby",
+      "versionFixed": "3.8.2",
+      "dueDateCode": "28.2.2023",
+      "dueDateDelivery": "22.2.2023",
+      "watch": true,
+      "delivered": true
+    },
+    {
+      "id": 5136,
+      "description": "Several Opc",
+      "sap": 2300348372,
+      "project": "Procontrol",
+      "versionFixed": "3.8.2",
+      "dueDateCode": "28.2.2023",
+      "dueDateDelivery": "22.2.2023",
+      "watch": true,
+      "delivered": false
+    },
+    {
+      "id": 5134,
+      "description": "Several Opc",
+      "sap": 2300348372,
+      "project": "Procontrol",
+      "versionFixed": "3.8.2",
+      "dueDateCode": "28.2.2023",
+      "dueDateDelivery": "22.2.2023",
+      "watch": true,
+      "delivered": false
+    }
+  ]
+}

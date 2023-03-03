@@ -9,7 +9,7 @@
             "dueDateCode":"28.2.2023",
             "dueDateDelivery":"22.2.2023",
             "watch":true,
-            "delivered":false
+            "delivered":true
         },
         {
             "id":5135,
@@ -20,7 +20,7 @@
             "dueDateCode":"28.2.2023",
             "dueDateDelivery":"22.2.2023",
             "watch":false,
-            "delivered":false
+            "delivered":true
         },
         {
             "id":5136,

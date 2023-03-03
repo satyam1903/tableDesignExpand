@@ -1,69 +1,309 @@
-<mat-toolbar><mat-toolbar-row> <span>{{title}}</span><span class="spacer"></span></mat-toolbar-row></mat-toolbar> 
-<table mat-table [dataSource]="issuesData" class="mat-elevation-z8 demo-table">
+<div>
 
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> ID </th>
-    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-  </ng-container>
-
-  <!-- Position Column -->
-  <ng-container matColumnDef="description">
-    <th mat-header-cell *matHeaderCellDef> DESCRIPTION </th>
-    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="sap">
-    <th mat-header-cell *matHeaderCellDef> SAP# </th>
-    <td mat-cell *matCellDef="let element"> {{element.sap}} </td>
-  </ng-container>
-
-  <!-- Weight Column -->
-  <ng-container matColumnDef="project">
-    <th mat-header-cell *matHeaderCellDef> Project </th>
-    <td mat-cell *matCellDef="let element"> {{element.project}} </td>
-  </ng-container>
-
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="versionFixed">
-    <th mat-header-cell *matHeaderCellDef> Version Fixed </th>
-    <td mat-cell *matCellDef="let element"> {{element.versionFixed}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="dueDateCode">
-    <th mat-header-cell *matHeaderCellDef> Due Date Code </th>
-    <td mat-cell *matCellDef="let element"> {{element.dueDateCode}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="dueDateDelivery">
-    <th mat-header-cell *matHeaderCellDef> Due Date Delivery</th>
-    <td mat-cell *matCellDef="let element"> {{element.dueDateDelivery}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="watch">
-    <th mat-header-cell *matHeaderCellDef> Watch </th>
-    <td mat-cell *matCellDef="let element"> {{element.watch}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="delivered">
-    <th mat-header-cell *matHeaderCellDef> Delivered </th>
-    <td mat-cell *matCellDef="let element"> {{element.delivered}} </td>
-  </ng-container> 
-
-  <mat-toolbar><mat-toolbar-row> <span>{{title}}</span><span class="spacer"></span></mat-toolbar-row></mat-toolbar>
-
- //--------------------------------------grouping---------------
-
-  <!-- <ng-container matColumnDef="groupHeader">
-		<mat-cell colspan="999" *matCellDef="let group">
-      <mat-icon *ngIf="group.expanded">expand_less</mat-icon>
-      <mat-icon *ngIf="!group.expanded">expand_more</mat-icon>
-			<strong> {{group[groupByColumns[group.level-1]]}} ({{group.totalCounts}})</strong>
-      </mat-cell>
-  </ng-container> -->
-
+  <mat-toolbar><mat-toolbar-row> <span><h2>{{title}}</h2></span><span class="spacer"></span></mat-toolbar-row></mat-toolbar> 
   
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+  <table mat-table [dataSource]="issuesData" class="demo-table">
+  
+  
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> DESCRIPTION </th>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="sap">
+      <th mat-header-cell *matHeaderCellDef> SAP# </th>
+    </ng-container>
+    <div style="margin-left: 70px;"></div>
+  
+    <ng-container matColumnDef="project">
+      <th mat-header-cell *matHeaderCellDef style="margin-right: 30px;margin-right: 30px;"> Project </th>
+    </ng-container>
+  
+    
+    <ng-container matColumnDef="versionFixed">
+      <th mat-header-cell *matHeaderCellDef> Version Fixed </th>
+    </ng-container>
+  
+    <ng-container matColumnDef="dueDateCode">
+      <th mat-header-cell *matHeaderCellDef style="margin-right: 30px;margin-right: 30px;"> Due Date Code </th>
+    </ng-container>
+  
+    <ng-container matColumnDef="dueDateDelivery">
+      <th mat-header-cell *matHeaderCellDef> Due Date Delivery</th>
+      
+    </ng-container>
+  
+    <ng-container matColumnDef="watch">
+      <th mat-header-cell *matHeaderCellDef> Watch </th>
+     
+    </ng-container>
+  
+    <ng-container matColumnDef="delivered">
+      <th mat-header-cell *matHeaderCellDef> Delivered </th>
+    </ng-container> 
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+    <!-- <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> -->
+  
+  
+  </table>
+  
+  <mat-toolbar>
+    <mat-icon (click)="showOpenIssue()">{{  openIssueTable ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+    <h3>Open Issues</h3>
+  </mat-toolbar>
+  <table mat-table [dataSource]="issuesData" class="mat-elevation-z8 demo-table" *ngIf="openIssueTable">
+  
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> DESCRIPTION </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="sap">
+      <th mat-header-cell *matHeaderCellDef> SAP# </th>
+      <td mat-cell *matCellDef="let element"> {{element.sap}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="project">
+      <th mat-header-cell *matHeaderCellDef> Project </th>
+      <td mat-cell *matCellDef="let element"> {{element.project}} </td>
+    </ng-container>
+  
+    
+    <ng-container matColumnDef="versionFixed">
+      <th mat-header-cell *matHeaderCellDef> Version Fixed </th>
+      <td mat-cell *matCellDef="let element"> {{element.versionFixed}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="dueDateCode">
+      <th mat-header-cell *matHeaderCellDef> Due Date Code </th>
+      <td mat-cell *matCellDef="let element"> {{element.dueDateCode}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="dueDateDelivery">
+      <th mat-header-cell *matHeaderCellDef> Due Date Delivery</th>
+      <td mat-cell *matCellDef="let element"> {{element.dueDateDelivery}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="watch">
+      <th mat-header-cell *matHeaderCellDef> Watch </th>
+      <td mat-cell *matCellDef="let element"> <div *ngIf="element.watch; else ElseBlock">
+        <input
+          type="checkbox"
+          id="star-checkbox"
+          class="star-checkbox"
+          checked
+        />
+        <label for="star-checkbox" class="star-label"></label>
+      </div>
+      <ng-template #ElseBlock>
+        <input type="checkbox" />
+      </ng-template></td>
+    </ng-container>
+  
+    <ng-container matColumnDef="delivered">
+      <th mat-header-cell *matHeaderCellDef> Delivered </th>
+      <td mat-cell *matCellDef="let element"> <div *ngIf="element.delivered else ElseBlock">
+        <input
+          type="checkbox"
+          id="star-checkbox"
+          class="star-checkbox"
+          checked
+        />
+        <label for="star-checkbox" class="star-label"></label>
+      </div>
+      <ng-template #ElseBlock>
+        <input type="checkbox" />
+      </ng-template> </td>
+    </ng-container> 
+  
+    <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr> -->
+  
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  
+  
+  <mat-toolbar>
+    <mat-icon (click)="showReadyIssue()">{{  readyIssueTable ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+    <h3>Ready To Deliver</h3>
+  </mat-toolbar>
+  <table mat-table [dataSource]="openIssue" class="mat-elevation-z8 demo-table" *ngIf="readyIssueTable">
+  
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="sap">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element"> {{element.sap}} </td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="project">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let element"> {{element.project}} </td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="versionFixed">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let element"> {{element.versionFixed}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="dueDateCode">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element"> {{element.dueDateCode}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="dueDateDelivery">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element"> {{element.dueDateDelivery}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="watch">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element"> <div *ngIf="element.watch; else ElseBlock">
+        <input
+          type="checkbox"
+          id="star-checkbox"
+          class="star-checkbox"
+          checked
+        />
+        <label for="star-checkbox" class="star-label"></label>
+      </div>
+      <ng-template #ElseBlock>
+        <input type="checkbox" />
+      </ng-template> </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="delivered">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let element"> <div *ngIf="element.delivered; else ElseBlock">
+        <input
+          type="checkbox"
+          id="star-checkbox"
+          class="star-checkbox"
+          checked
+        />
+        <label for="star-checkbox" class="star-label"></label>
+      </div>
+      <ng-template #ElseBlock>
+        <input type="checkbox" />
+      </ng-template> </td>
+    </ng-container> 
+  
+  
+    <mat-toolbar><mat-toolbar-row> <span>{{title}}</span><span class="spacer"></span></mat-toolbar-row></mat-toolbar>
+  
+   //--------------------------------------grouping---------------
+  
+  
+  
+    
+  
+   
+  
+  
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  <mat-toolbar>
+    <mat-icon (click)="showDoneIssue()">{{ doneIssueTable ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+    <h3>Done</h3>
+  </mat-toolbar>
+  <table mat-table [dataSource]="DoneIssue" class="mat-elevation-z8 demo-table" *ngIf="doneIssueTable">
+  
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> DESCRIPTION </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="sap">
+      <th mat-header-cell *matHeaderCellDef> SAP# </th>
+      <td mat-cell *matCellDef="let element"> {{element.sap}} </td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="project">
+      <th mat-header-cell *matHeaderCellDef> Project </th>
+      <td mat-cell *matCellDef="let element"> {{element.project}} </td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="versionFixed">
+      <th mat-header-cell *matHeaderCellDef> Version Fixed </th>
+      <td mat-cell *matCellDef="let element"> {{element.versionFixed}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="dueDateCode">
+      <th mat-header-cell *matHeaderCellDef> Due Date Code </th>
+      <td mat-cell *matCellDef="let element"> {{element.dueDateCode}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="dueDateDelivery">
+      <th mat-header-cell *matHeaderCellDef> Due Date Delivery</th>
+      <td mat-cell *matCellDef="let element"> {{element.dueDateDelivery}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="watch">
+      <th mat-header-cell *matHeaderCellDef> Watch </th>
+      <td mat-cell *matCellDef="let element"><div *ngIf="element.watch; else ElseBlock">
+        <input
+          type="checkbox"
+          id="star-checkbox"
+          class="star-checkbox"
+          checked
+        />
+        <label for="star-checkbox" class="star-label"></label>
+      </div>
+      <ng-template #ElseBlock>
+        <input type="checkbox" />
+      </ng-template> </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="delivered">
+      <th mat-header-cell *matHeaderCellDef> Delivered </th>
+      <td mat-cell *matCellDef="let element"><div *ngIf="element.delivered; else ElseBlock">
+        <input
+          type="checkbox"
+          id="star-checkbox"
+          class="star-checkbox"
+          checked
+        />
+        <label for="star-checkbox" class="star-label"></label>
+      </div>
+      <ng-template #ElseBlock>
+        <input type="checkbox" />
+      </ng-template> </td>
+    </ng-container> 
+  
+    <mat-toolbar><mat-toolbar-row> <span>{{title}}</span><span class="spacer"></span></mat-toolbar-row></mat-toolbar>
+  
+   
+   
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  </div>
+  
+  
