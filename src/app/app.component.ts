@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { count } from 'rxjs';
 import { RestapiService } from './service/restapi.service';
 
 
@@ -31,6 +32,9 @@ export class AppComponent implements OnInit {
   doneIssueTable: boolean = false;
   openIssueTable: boolean=false;
   readyIssueTable: boolean=false;
+  openIssueCount: number=0;
+  readyIssueCount: number=0;
+  doneIssueCount: number=0;
   showDoneIssue() {
     this.doneIssueTable = !this.doneIssueTable;
   }
@@ -50,13 +54,23 @@ export class AppComponent implements OnInit {
   issuesData:any;
   openIssue:any;
   DoneIssue:any;
+  openIssuesCount:any;
   displayedColumns: string[] = ["description","sap","project","versionFixed","dueDateCode","dueDateDelivery","watch","delivered"];
 
   GetIssueDetails(){
     this.service.GetIssueDetails().subscribe(response=>{
+      let jsonString = JSON.stringify(response);
+      let issues:IssueDetail[] = JSON.parse(jsonString);
+      this.issuesData = issues.filter((issue:IssueDetail) => issue.delivered === false);
+      let openCount= this.issuesData.length;
+      this.openIssueCount=openCount;
       
-      this.openIssue=response;
-      this.DoneIssue;
+      this.DoneIssue = issues.filter((issue:IssueDetail) => issue.delivered === true);
+      let doneCount=this.DoneIssue.length;
+      this.doneIssueCount=doneCount;
+      console.log(this.DoneIssue);
+      console.log(this.openIssueCount);
+        
       // console.log(this.issuesData);
  
     });
@@ -64,4 +78,5 @@ export class AppComponent implements OnInit {
   }
  
   title="ALL ISSUES LIST";
+
 }
